@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "339224188718",
+    "firebase_url": "https://social-market-b0147.firebaseio.com",
+    "project_id": "social-market-b0147",
+    "storage_bucket": "social-market-b0147.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339224188718:android:e3cea4a8974809ec258cbf",
+        "android_client_info": {
+          "package_name": "app.orangekraft.vendegana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339224188718-aqr61nehkruurodtha6ct53hqk7vehdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw0xIUnTkIIJtDvY_1dkqVTHdvy_FRhsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339224188718-aqr61nehkruurodtha6ct53hqk7vehdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
