@@ -96,7 +96,7 @@ class WelcomeScreen extends StatelessWidget {
                             "Continuar",
                             style: Theme.of(context).textTheme.button.copyWith(
                                   color: Colors.white,
-                                  fontSize: 24,
+                                  fontSize: 30,
                                 ),
                           ),
                           
