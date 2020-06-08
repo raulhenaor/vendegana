@@ -2,14 +2,25 @@ import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
+import 'main.dart';
+
 class SignInScreen extends StatelessWidget {
+
+
+  String noCelular;
+  String smsCode;
+  String idVerification;
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -49,42 +60,58 @@ class SignInScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(right: 16),
                           child: Icon(
-                            Icons.alternate_email,
+                            Icons.phone,
                             color: kPrimaryColor,
                           ),
                         ),
                         Expanded(
                           child: TextField(
                             decoration: InputDecoration(
-                              hintText: "Dirección de correo",
+                              hintText: "Ingrese número de Celular",
                             ),
+                            onChanged: (value) {
+                              this.noCelular = value;
+                            },
                           ),
                         )
                       ],
                     ),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: Icon(
-                         Icons.lock,
-                          color: kPrimaryColor,
+                  FittedBox(
+                    child: GestureDetector (
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                        return WelcomeScreen();
+                        },
+                        ));
+                      },
+                      child: Container (
+                        margin: EdgeInsets.only(bottom:50),
+                        padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.amber,
+                        ),
+                        child: Row (
+                          children: <Widget>[
+                            Text(
+                              'Validar',
+                              style: Theme.of(context).textTheme.button.copyWith(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Contraseña",
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
+                
+
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
+                    padding: const EdgeInsets.only(bottom: 15),
                     child: Row(
                       children: <Widget>[
                         Container(
@@ -122,9 +149,12 @@ class SignInScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: kPrimaryColor,
                           ),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.black,
+                          child: Row(                            
+                            children: <Widget>[                              
+                              Text (
+                                'Validar'
+                              ),
+                            ],                            
                           ),
                         )
                       ],
