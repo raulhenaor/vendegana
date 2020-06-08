@@ -1,6 +1,6 @@
+import 'components/custom_animation.dart';
 import 'constants.dart';
 import 'signin_screen.dart';
-import 'package:vendegana/components/custom_buttom';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.black87,
         textTheme: TextTheme(
-          display1: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+          display1: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           button: TextStyle(color: kPrimaryColor),
           headline:
               TextStyle(color: Colors.white, fontWeight: FontWeight.normal),
@@ -40,19 +40,24 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Colors.white,
-        child: 
+        color: Colors.black,
+        child:  
         Column(
         children: <Widget>[
           Expanded(
-              child: Container(
+
+            child: Container(
+              padding: EdgeInsets.only(top: 15),
               width: double.infinity,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage("assets/homeimg1.jpg"),
                   fit: BoxFit.fill,
                 ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(35),
+                  bottomRight: Radius.circular(35) 
+                )
               ),
             ),
           ),
@@ -79,13 +84,22 @@ class WelcomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                CustomButtom()
-
+                FittedBox(
+                  child: CustomAnimation(
+                        label: "Continuar",
+                        background: Colors.amber,
+                        borderColor: Colors.white,
+                        fontColor: Colors.white,
+                       
+                    
+                  )
+                ),
               ],
             ),
           ),
         ],
       ),
-    ));
+    )
+    );
   }
 }

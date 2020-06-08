@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+
+import '../signin_screen.dart';
 
 class CustomAnimation extends StatefulWidget {
   final String label;
@@ -28,7 +31,14 @@ class _CustomAnimationState extends State<CustomAnimation>
     _scaleAnimation = Tween<double>(begin: 1.0, end: 32.0)
     .animate(_scaleController)..addStatusListener((status) {
       if(status == AnimationStatus.completed){
-        
+        Navigator.push(context, PageTransition(
+          type: PageTransitionType.fade,
+          child: SignInScreen()
+        )).then((value){
+          _scaleController.reverse().then((e){
+            _isTextHide = false;
+          });
+        });
       }
     });
   }
@@ -47,7 +57,9 @@ class _CustomAnimationState extends State<CustomAnimation>
            builder: (context, child) => Transform.scale(
              scale: _scaleAnimation.value,
           child: Container(
-             height: 63,
+           margin: EdgeInsets.only(bottom: 25),
+           padding:
+            EdgeInsets.symmetric(horizontal: 100, vertical: 16),
              alignment: Alignment.center,
              decoration: BoxDecoration(
               color: widget.background,
@@ -59,9 +71,10 @@ class _CustomAnimationState extends State<CustomAnimation>
              ),
              child: !_isTextHide ? Text(widget.label, style: TextStyle(
                color: widget.fontColor,
-               fontSize: 20,
+               fontSize: 30,
                fontWeight: FontWeight.bold
-             )): Container(),
+             )): Container(
+             ),
            )),
          )
     );
