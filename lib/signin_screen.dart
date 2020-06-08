@@ -1,18 +1,11 @@
 import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'main.dart';
 
 class SignInScreen extends StatelessWidget {
-
-
-  String noCelular;
-  String smsCode;
-  String idVerification;
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +34,7 @@ class SignInScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween, 
                     children: <Widget>[
                       Text(                        
-                        "INICIAR SESIÓN",
-                        
+                        "INICIAR SESIÓN",                        
                         style: Theme.of(context).textTheme.display1,
                       ),
                       Text(
