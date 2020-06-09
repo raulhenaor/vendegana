@@ -85,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                        codeSent ? AuthService().signInWithOTP(smsCode, verificationId):verifyPhone(phoneNo);
+                        return WelcomeScreen();
                         },
                         ));
                       },
@@ -110,15 +110,6 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  codeSent ? Padding(
-                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(hintText: 'Enter OTP'),
-                    onChanged: (val) {
-                      
-                    },
-                  )) : Container(),
                 
 
                   Spacer(),
