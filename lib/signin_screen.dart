@@ -61,8 +61,7 @@ class SignInScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Ingrese número de Celular",
                             ),
-                            onChanged: (value) {
-                              this.noCelular = value;
+                            onChanged: (value) {                              
                             },
                           ),
                         )
