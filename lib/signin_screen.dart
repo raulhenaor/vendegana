@@ -2,10 +2,21 @@ import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'services/authservice.dart';
 
 import 'main.dart';
 
 class SignInScreen extends StatelessWidget {
+
+  String phoneNo, verificationId, smsCode;
+  bool codeSent = false;
+
+
+  
+
+
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +72,8 @@ class SignInScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Ingrese número de Celular",
                             ),
-                            onChanged: (value) {                              
+                            onChanged: (value) {    
+                              this.phoneNo = value;                          
                             },
                           ),
                         )
@@ -73,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                        return WelcomeScreen();
+                        codeSent ? AuthService().signInWithOTP(smsCode, verificationId):verifyPhone(phoneNo);
                         },
                         ));
                       },
@@ -98,6 +110,15 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  codeSent ? Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(hintText: 'Enter OTP'),
+                    onChanged: (val) {
+                      
+                    },
+                  )) : Container(),
                 
 
                   Spacer(),
@@ -158,5 +179,38 @@ class SignInScreen extends StatelessWidget {
         ],
       ),
     );
+
+    
+  }
+
+  Future<void> verifyPhone(phoneNo) async {
+    final PhoneVerificationCompleted verified = (AuthCredential authResult) {
+      AuthService().signIn(authResult);
+    };
+
+    final PhoneVerificationFailed verificationfailed =
+        (AuthException authException) {
+      print('${authException.message}');
+    };
+
+    final PhoneCodeSent smsSent = (String verId, [int forceResend]) {
+      this.verificationId = verId;
+      
+    };
+
+    final PhoneCodeAutoRetrievalTimeout autoTimeout = (String verId) {
+      this.verificationId = verId;
+    };
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phoneNo,
+        timeout: const Duration(seconds: 5),
+        verificationCompleted: verified,
+        verificationFailed: verificationfailed,
+        codeSent: smsSent,
+        codeAutoRetrievalTimeout: autoTimeout);
   }
 }
+
+
+
