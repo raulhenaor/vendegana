@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:vendegana/screen/dashboard.dart';
+import 'package:vendegana/test.dart';
 import '../signin_screen.dart';
 
 class CustomAnimation extends StatefulWidget {
@@ -26,14 +27,14 @@ class _CustomAnimationState extends State<CustomAnimation>
   void initState() {
     super.initState();
     _scaleController = AnimationController(vsync: this,
-    duration: Duration(milliseconds: 350)
+    duration: Duration(milliseconds: 150)
     );
     _scaleAnimation = Tween<double>(begin: 1.0, end: 32.0)
     .animate(_scaleController)..addStatusListener((status) {
       if(status == AnimationStatus.completed){
         Navigator.push(context, PageTransition(
           type: PageTransitionType.fade,
-          child: SignInScreen()
+          child: DashboardPage()
         )).then((value){
           _scaleController.reverse().then((e){
             _isTextHide = false;

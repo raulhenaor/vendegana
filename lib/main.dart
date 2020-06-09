@@ -1,3 +1,5 @@
+import 'package:vendegana/sidebar/sidebar_layourt.dart';
+
 import 'components/custom_animation.dart';
 import 'constants.dart';
 import 'signin_screen.dart';
@@ -10,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Auth Screen 1',
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: WelcomeScreen(),
+      home: SideBarLayout(),
     );
   }
 }
@@ -38,22 +41,22 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.black,
-        child:  
+      body: //Container(
+        // width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height,
+        // color: Colors.black,
+        // child:  
         Column(
         children: <Widget>[
           Expanded(
-
+            flex: 1,
             child: Container(
               padding: EdgeInsets.only(top: 15),
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/homeimg1.jpg"),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(35),
@@ -100,7 +103,7 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ],
       ),
-    )
     );
+ //   );
   }
 }
