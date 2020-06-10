@@ -1,4 +1,4 @@
-import 'package:vendegana/services/authservice.dart';
+
 
 import 'components/custom_animation.dart';
 import 'constants.dart';
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      //home: WelcomeScreen(),
+      home: WelcomeScreen(),
       
-      home: AuthService().handleAuth(),
+      
     );
   }
 }

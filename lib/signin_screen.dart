@@ -1,8 +1,6 @@
 import 'constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'services/authservice.dart';
+
 
 import 'main.dart';
 
@@ -13,9 +11,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  String phoneNo, verificationId, smsCode;
 
-  bool codeSent = false;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -74,35 +71,13 @@ class _SignInScreenState extends State<SignInScreen> {
                               hintText: "Ingrese número de Celular",
                             ),
                             onChanged: (val) {    
-                              this.phoneNo = val;                          
+                                                        
                             },
                           ),
                         )
                       ],
                     ),
                   ),
-
-                  codeSent ? Padding(
-                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(hintText: 'Ingresa el código'),
-                    onChanged: (val) {
-                      setState(() {
-                        this.smsCode = val;
-                      });
-                    },
-                  )) : Container(),
-              Padding(
-                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: RaisedButton(
-                      child: Center(child: codeSent ? Text('Ingresar'):Text('Verificar')),
-                      onPressed: () {
-                        codeSent ? AuthService().signInWithOTP(smsCode, verificationId):verifyPhone(phoneNo);
-                      })),
-
-
-
                   FittedBox(
                     child: GestureDetector (
                       onTap: () {
@@ -146,35 +121,7 @@ class _SignInScreenState extends State<SignInScreen> {
     
   }
 
-  Future<void> verifyPhone(phoneNo) async {
-    final PhoneVerificationCompleted verified = (AuthCredential authResult) {
-      AuthService().signIn(authResult);
-    };
-
-    final PhoneVerificationFailed verificationfailed =
-        (AuthException authException) {
-      print('${authException.message}');
-    };
-
-    final PhoneCodeSent smsSent = (String verId, [int forceResend]) {
-      this.verificationId = verId;
-      setState(() {
-        this.codeSent = true;
-      });
-    };
-
-    final PhoneCodeAutoRetrievalTimeout autoTimeout = (String verId) {
-      this.verificationId = verId;
-    };
-
-    await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: phoneNo,
-        timeout: const Duration(seconds: 5),
-        verificationCompleted: verified,
-        verificationFailed: verificationfailed,
-        codeSent: smsSent,
-        codeAutoRetrievalTimeout: autoTimeout);
-  }
+  
 }
 
 
