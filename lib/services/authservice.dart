@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vendegana/screen/dashboard.dart';
 import 'package:vendegana/signin_screen.dart';
+import 'package:vendegana/main.dart';
 
 
 
@@ -16,7 +17,7 @@ class AuthService {
           if (snapshot.hasData) {
             return DashboardPage();
           } else {
-            return SignInScreen();
+            return WelcomeScreen();
           }
         });
   }

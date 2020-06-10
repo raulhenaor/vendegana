@@ -1,3 +1,5 @@
+import 'package:vendegana/services/authservice.dart';
+
 import 'components/custom_animation.dart';
 import 'constants.dart';
 import 'signin_screen.dart';
@@ -29,7 +31,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: WelcomeScreen(),
+      //home: WelcomeScreen(),
+      
+      home: AuthService().handleAuth(),
     );
   }
 }

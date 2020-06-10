@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:vendegana/test.dart';
 
 import '../signin_screen.dart';
 
@@ -34,6 +35,7 @@ class _CustomAnimationState extends State<CustomAnimation>
         Navigator.push(context, PageTransition(
           type: PageTransitionType.fade,
           child: SignInScreen()
+          
         )).then((value){
           _scaleController.reverse().then((e){
             _isTextHide = false;

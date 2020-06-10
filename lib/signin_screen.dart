@@ -6,21 +6,22 @@ import 'services/authservice.dart';
 
 import 'main.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
 
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   String phoneNo, verificationId, smsCode;
+
   bool codeSent = false;
-
-
-  
-
-
-  
-
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      
       body: Column(
         children: <Widget>[
           Expanded(
@@ -72,14 +73,36 @@ class SignInScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Ingrese número de Celular",
                             ),
-                            onChanged: (value) {    
-                              this.phoneNo = value;                          
+                            onChanged: (val) {    
+                              this.phoneNo = val;                          
                             },
                           ),
                         )
                       ],
                     ),
                   ),
+
+                  codeSent ? Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(hintText: 'Ingresa el código'),
+                    onChanged: (val) {
+                      setState(() {
+                        this.smsCode = val;
+                      });
+                    },
+                  )) : Container(),
+              Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                  child: RaisedButton(
+                      child: Center(child: codeSent ? Text('Ingresar'):Text('Verificar')),
+                      onPressed: () {
+                        codeSent ? AuthService().signInWithOTP(smsCode, verificationId):verifyPhone(phoneNo);
+                      })),
+
+
+
                   FittedBox(
                     child: GestureDetector (
                       onTap: () {
@@ -112,57 +135,6 @@ class SignInScreen extends StatelessWidget {
                   ),
                 
 
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white.withOpacity(.5),
-                            ),
-                          ),
-                          child: Icon(
-                            EvilIcons.sc_facebook,
-                            size: 20,
-                            color: Colors.white.withOpacity(.5),
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white.withOpacity(.5),
-                            ),
-                          ),
-                          child: Icon(
-                            AntDesign.google,
-                            color: Colors.white.withOpacity(.5),
-                          ),
-                        ),
-                        Spacer(),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: kPrimaryColor,
-                          ),
-                          child: Row(                            
-                            children: <Widget>[                              
-                              Text (
-                                'Validar'
-                              ),
-                            ],                            
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -186,7 +158,9 @@ class SignInScreen extends StatelessWidget {
 
     final PhoneCodeSent smsSent = (String verId, [int forceResend]) {
       this.verificationId = verId;
-      
+      setState(() {
+        this.codeSent = true;
+      });
     };
 
     final PhoneCodeAutoRetrievalTimeout autoTimeout = (String verId) {
