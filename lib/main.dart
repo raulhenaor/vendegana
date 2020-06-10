@@ -1,8 +1,9 @@
 
 
+import 'package:vendegana/sidebar/sidebar_layourt.dart';
+
 import 'components/custom_animation.dart';
 import 'constants.dart';
-import 'signin_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Auth Screen 1',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: kPrimaryColor,
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: WelcomeScreen(),
+      home: SideBarLayout(),
       
       
     );

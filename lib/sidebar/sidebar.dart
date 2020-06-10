@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
+import 'custom_clipper.dart';
 import 'menu_item.dart';
 
 
@@ -67,6 +68,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
           children: <Widget>[
             Expanded(
               child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.amber,
                 child: Column(children: <Widget>[
                   SizedBox(height: 100),
@@ -92,13 +94,43 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ),
                   ),
                   Divider(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withOpacity(0.6),
                     height: 64,
                     thickness: 0.5,
                     indent: 32,
                     endIndent: 32,
-                    ),
-                    Menucitos()
+                  ),
+                  Menucitos(
+                    icon: Icons.home,
+                    title: 'Inicio',
+                  ),
+                  Menucitos(
+                      icon: Icons.person,
+                      title: 'Mi Perfil',
+                  ),
+                  Menucitos(
+                      icon: Icons.shopping_basket,
+                      title: 'Mi Carrito',
+                  ),
+                  Menucitos(
+                      icon: Icons.card_giftcard,
+                      title: 'Deseados',
+                  ),
+                  Divider(
+                    color: Colors.white.withOpacity(0.6),
+                    height: 64,
+                    thickness: 0.5,
+                    indent: 32,
+                    endIndent: 32,
+                  ),
+                  Menucitos(
+                    icon: Icons.settings,
+                    title: 'Configuracion',
+                  ),
+                  Menucitos(
+                    icon: Icons.exit_to_app,
+                    title: 'Salir',
+                  )
                 ],
                 ),
               ) 
@@ -109,16 +141,19 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                 onTap:(){
                   onIconPressed();
                 },
-                child: Container(
-                  width: 35,
-                  height: 110,
-                  color: Colors.black,
-                  alignment: Alignment.centerLeft,
-                  child: AnimatedIcon(
-                    icon: AnimatedIcons.menu_arrow,
-                    progress: _animationController.view,
-                    color: Colors.white,
-                    size: 25,
+                child: ClipPath(
+                  clipper: CustomMenuClipper(),
+                  child: Container(
+                    width: 35,
+                    height: 110,
+                    color: Colors.amber,
+                    alignment: Alignment.centerLeft,
+                    child: AnimatedIcon(
+                      icon: AnimatedIcons.menu_arrow,
+                      progress: _animationController.view,
+                      color: Colors.white,
+                      size: 25,
+                    ),
                   ),
                 ),
               ),
