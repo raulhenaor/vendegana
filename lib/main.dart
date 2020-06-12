@@ -2,6 +2,7 @@
 
 import 'package:vendegana/sidebar/sidebar_layourt.dart';
 
+import 'bloc.navigation_bloc/navigation_bloc.dart';
 import 'components/custom_animation.dart';
 import 'constants.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatelessWidget with NavigationStates {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

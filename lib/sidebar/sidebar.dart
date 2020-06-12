@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
+import 'package:vendegana/bloc.navigation_bloc/navigation_bloc.dart';
 import 'custom_clipper.dart';
 import 'menu_item.dart';
 
@@ -103,18 +105,34 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                   Menucitos(
                     icon: Icons.home,
                     title: 'Inicio',
+                    onTap: (){
+                      onIconPressed();
+                      BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
+                    },
                   ),
                   Menucitos(
-                      icon: Icons.person,
-                      title: 'Mi Perfil',
+                    icon: Icons.person,
+                    title: 'Mi Perfil',
+                    onTap: (){
+                      onIconPressed();
+                      BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
+                    },
                   ),
                   Menucitos(
-                      icon: Icons.shopping_basket,
-                      title: 'Mi Carrito',
+                    icon: Icons.shopping_basket,
+                    title: 'Mi Carrito',
+                    onTap: (){
+                      onIconPressed();
+                      BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
+                    },
                   ),
                   Menucitos(
                       icon: Icons.card_giftcard,
                       title: 'Deseados',
+                      onTap: (){
+                      onIconPressed();
+                      BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyWishClickedEvent);
+                    },
                   ),
                   Divider(
                     color: Colors.white.withOpacity(0.6),
@@ -126,6 +144,10 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                   Menucitos(
                     icon: Icons.settings,
                     title: 'Configuracion',
+                    onTap: (){
+                      onIconPressed();
+                      BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MySettingsClickedEvent);
+                    },
                   ),
                   Menucitos(
                     icon: Icons.exit_to_app,
