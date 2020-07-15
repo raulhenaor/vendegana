@@ -18,7 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
     Size size = MediaQuery.of(context).size;
     print('$size');
     return Scaffold(
+      drawer: MenuLateral(),
       appBar: buildAppBar(),
+
       body: Body(),
       // bottomNavigationBar: MyBottomNavBar(),
     );
@@ -28,10 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.blue,
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () {},
-      ),
       actions: <Widget>[
         isSearching == false
             ?
@@ -111,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ))
       ],
     );
+
     /* actions: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 0),
@@ -187,3 +186,151 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
         ],
       ), */
+
+class MenuLateral extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Drawer(
+      child: ListView(
+        children: <Widget>[
+          new UserAccountsDrawerHeader(
+            currentAccountPicture: GestureDetector(
+                child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://pbs.twimg.com/profile_images/614157741179936768/YUgj9vgF_400x400.png'),
+            )),
+            accountName: Text("HOLA RAUL JESUS"),
+            accountEmail: Text("raulhenaor@gmail.com"),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://ichef.bbci.co.uk/news/660/cpsprodpb/6AFE/production/_102809372_machu.jpg"),
+                    fit: BoxFit.cover)),
+          ),
+          Ink(
+            color: Colors.indigo,
+            child: new ListTile(
+              title: Text(
+                "Inicio",
+                style: TextStyle(color: Colors.white),
+              ),
+              leading: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => HomeScreen()));
+              },
+            ),
+          ),
+          new ListTile(
+            title: Text("Mi cuenta"),
+            leading: Icon(
+              Icons.person,
+              color: Colors.grey,
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Productos()));
+            },
+          ),
+          new ListTile(
+            title: Text("Mis comisiones"),
+            leading: Icon(
+              Icons.attach_money,
+              color: Colors.grey,
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Galeria()));
+            },
+          ),
+          new ListTile(
+            title: Text("Categorías"),
+            leading: Icon(
+              Icons.view_list,
+              color: Colors.grey,
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Contacto()));
+            },
+          ),
+          ListTile(
+            title: Text("Mega Promociones"),
+            leading: Icon(
+              Icons.shopping_basket,
+              color: Colors.grey,
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Contacto()));
+            },
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class Empresa extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: new Text("EMPRESA"),
+      ),
+      body: Center(
+        child: Text("ESTAS EN EMPRESA"),
+      ),
+    );
+  }
+}
+
+class Productos extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: new Text("PRODUCTOS"),
+      ),
+      body: Center(
+        child: Text("ESTAS EN PRODUCTOS"),
+      ),
+    );
+  }
+}
+
+class Galeria extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: new Text("GALERIA"),
+      ),
+      body: Center(
+        child: Text("ESTAS EN GALERIA"),
+      ),
+    );
+  }
+}
+
+class Contacto extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: AppBar(
+        title: new Text("CONTACTO"),
+      ),
+      body: Center(
+        child: Text("ESTAS EN CONTACTO"),
+      ),
+    );
+  }
+}
