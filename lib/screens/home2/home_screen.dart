@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 
 import 'components/body.dart';
 
-FocusNode myFocusNode = new FocusNode();
+
 
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+
+TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 4);
+  }
+
+
+
   @override
   bool isSearching = false;
-
+  Color primaryColor = Colors.blueAccent;
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     print('$size');
@@ -29,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   AppBar buildAppBar() {
     return AppBar(
       elevation: 0,
-      backgroundColor: Colors.blue,
+      backgroundColor: primaryColor,
       actions: <Widget>[
         isSearching == false
             ?
@@ -49,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         isSearching = true;
                       });
                     },
-                    focusNode: myFocusNode,
+                    
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Buscar producto',
@@ -82,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50)),
                   child: TextFormField(
-                    focusNode: myFocusNode,
+                    
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Escribe el producto',
@@ -108,6 +119,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ))
       ],
+      bottom: TabBar(
+        controller: TabController(length: 4, vsync: this ),
+        isScrollable: true,
+        indicatorColor: Colors.black,
+        indicatorWeight: 2.0,
+        
+        unselectedLabelStyle:TextStyle(color: Colors.black, fontSize: 15),
+        labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+        onTap: (index){
+        
+        },
+      tabs: <Widget>[
+        Tab(child: Container(child: Text('Calzado'))),
+        Tab(child: Container(child: Text('Accesorios'))),
+        Tab(child: Container(child: Text('Ropa'))),
+        Tab(child: Container(child: Text('Tecnologia')))
+      ],
+      ),
     );
 
     /* actions: <Widget>[

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vendegana/screens/home/components/categorries.dart';
 
 import '../../../constants.dart';
 import '../../../models/Product.dart';
@@ -18,6 +19,7 @@ class Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          /* Categories(), */
           // HeaderWithSearchBox(size: size),
           TitleWithMoreBtn(title: "Recomendados", press: () {}),
           RecomendsPlants(),
