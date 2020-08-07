@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../../constants.dart';
-import '../../../models/Product.dart';
-import '../../details/details_screen.dart';
-import '../../home/components/item_card.dart';
+import 'package:vendegana/constants.dart';
+import 'package:vendegana/models/Product.dart';
+import 'package:vendegana/screens/details/details_screen.dart';
+import 'package:vendegana/screens/home/components/item_card.dart';
+import 'package:vendegana/screens/home2/components/recomend_plants.dart';
+import 'package:vendegana/screens/home2/components/title_with_more_bbtn.dart';
 
-import 'recomend_plants.dart';
-import 'title_with_more_bbtn.dart';
 
-class Body extends StatelessWidget {
+
+
+class Tecnologia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // It will provie us total height  and width of our screen

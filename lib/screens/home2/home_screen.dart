@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vendegana/propScreens/accesorios.dart';
+import 'package:vendegana/propScreens/calzado.dart';
+import 'package:vendegana/propScreens/ropa.dart';
+import 'package:vendegana/propScreens/tecnologia.dart';
 
 
-import 'components/body.dart';
+//import 'components/body.dart';
 
 
 
@@ -32,7 +36,17 @@ TabController _tabController;
       drawer: MenuLateral(),
       appBar: buildAppBar(),
 
-      body: Body(),
+      body: TabBarView(children: <Widget>[
+        Calzado(),
+        Accesorios(),
+        Ropa(),
+        Tecnologia()
+
+      ],
+      controller: _tabController)
+
+
+        // Body(), BODY ORIGINAL IMPLEMENTADO PROVENIENTE DE LA APP DE PRUEBA
       // bottomNavigationBar: MyBottomNavBar(),
     );
   }
@@ -120,7 +134,7 @@ TabController _tabController;
                 ))
       ],
       bottom: TabBar(
-        controller: TabController(length: 4, vsync: this ),
+        controller: _tabController,
         isScrollable: true,
         indicatorColor: Colors.black,
         indicatorWeight: 2.0,
