@@ -21,7 +21,8 @@ ProductosDetailList({this.nombre,this.categorias,this.descripcion,this.codProvee
 factory ProductosDetailList.fromJson(Map<dynamic,dynamic> parsedJson){
   return ProductosDetailList(nombre: parsedJson['nombre'], categorias: parsedJson['categoria'], descripcion: parsedJson['descripcion'],
                              codProveedor: parsedJson['cod_proveedor'], imgUno: parsedJson['imagen_1'], imgDos: parsedJson['imagen_2'],
-                             imgTres: parsedJson['imagen_3'], imgCuatro: parsedJson['imagen_4'], imgP: parsedJson['imagen_p']);
+                             imgTres: parsedJson['imagen_3'], imgCuatro: parsedJson['imagen_4'], imgP: parsedJson['imagen_p'], precio: parsedJson['precio'],
+                             precioOferta: parsedJson['precio_oferta']);
 }
 
 }
